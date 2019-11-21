@@ -1,0 +1,310 @@
+INSERT INTO public.tipo(
+            idtipo, tipo)
+    VALUES (1, 'Central');
+
+INSERT INTO public.tipo(
+            idtipo, tipo)
+    VALUES (2, 'Local');
+
+INSERT INTO public.status(
+            idstatus, situacao)
+    VALUES (1, 'Em Processo');
+
+INSERT INTO public.status(
+            idstatus, situacao)
+    VALUES (2, 'Aprovada');
+
+INSERT INTO public.status(
+            idstatus, situacao)
+    VALUES (3, 'Recusada');
+
+INSERT INTO public.status(
+            idstatus, situacao)
+    VALUES (4, 'Em Trânsito');
+
+INSERT INTO public.status(
+            idstatus, situacao)
+    VALUES (5, 'Entregue');
+
+INSERT INTO public.estoque(
+            idestoque)
+    VALUES (1);
+
+INSERT INTO public.estoque(
+            idestoque)
+    VALUES (2);
+
+INSERT INTO public.estoque(
+            idestoque)
+    VALUES (3);
+
+INSERT INTO public.estoque(
+            idestoque)
+    VALUES (4);
+
+INSERT INTO public.estoque(
+            idestoque)
+    VALUES (5);
+
+INSERT INTO public.estoque(
+            idestoque)
+    VALUES (6);
+
+INSERT INTO public.estoque(
+            idestoque)
+    VALUES (7);
+
+INSERT INTO public.estoque(
+            idestoque)
+    VALUES (8);
+
+INSERT INTO public.estoque(
+            idestoque)
+    VALUES (9);
+
+INSERT INTO public.estoque(
+            idestoque)
+    VALUES (10);
+
+INSERT INTO public.estoque(
+            idestoque)
+    VALUES (11);
+
+INSERT INTO public.almoxarifado(
+            "idalmoxarifado", campus, tipo, estoque)
+    VALUES (1, 'Bagé', 1, 1);
+
+INSERT INTO public.almoxarifado(
+            "idalmoxarifado", campus, tipo, estoque)
+    VALUES (2, 'Bagé', 2, 2);
+
+INSERT INTO public.almoxarifado(
+            "idalmoxarifado", campus, tipo, estoque)
+    VALUES (3, 'Alegrete', 2, 3);
+
+INSERT INTO public.almoxarifado(
+            "idalmoxarifado", campus, tipo, estoque)
+    VALUES (4, 'Caçapava do Sul', 2, 4);
+
+
+INSERT INTO public.almoxarifado(
+            "idalmoxarifado", campus, tipo, estoque)
+    VALUES (5, 'Dom Pedrito', 2, 5);
+
+INSERT INTO public.almoxarifado(
+            "idalmoxarifado", campus, tipo, estoque)
+    VALUES (6, 'Itaqui', 2, 6);
+
+INSERT INTO public.almoxarifado(
+            "idalmoxarifado", campus, tipo, estoque)
+    VALUES (7, 'Jaguarão', 2, 7);
+
+INSERT INTO public.almoxarifado(
+            "idalmoxarifado", campus, tipo, estoque)
+    VALUES (8, 'Santana do Livramento', 2, 8);
+
+INSERT INTO public.almoxarifado(
+            "idalmoxarifado", campus, tipo, estoque)
+    VALUES (9, 'São Borja', 2, 9);
+
+INSERT INTO public.almoxarifado(
+            "idalmoxarifado", campus, tipo, estoque)
+    VALUES (10, 'São Gabriel', 2, 10);
+
+INSERT INTO public.almoxarifado(
+            "idalmoxarifado", campus, tipo, estoque)
+    VALUES (11, 'Uruguaiana', 2, 11);
+
+INSERT INTO public.almoxarife(
+            idalmoxarife, siape, senha, email, almoxarifado, tipo)
+    VALUES (1, 'joaosilva', '123','joaosilva@email.com', 1, 1);
+
+INSERT INTO public.almoxarife(
+            idalmoxarife, siape, senha, email, almoxarifado, tipo)
+    VALUES (2, 'robsonfrescura', '123','robsonfrescura@email.com', 2, 2);
+
+INSERT INTO public.almoxarife(
+            idalmoxarife, siape, senha, email, almoxarifado, tipo)
+    VALUES (3, 'samuelcabrera', '123','samuelcabrera@email.com', 3, 2);
+
+
+INSERT INTO public.almoxarife(
+            idalmoxarife, siape, senha, email, almoxarifado, tipo)
+    VALUES (4, 'anabraga', '123','anabraga@email.com', 4, 2);
+
+
+INSERT INTO public.almoxarife(
+            idalmoxarife, siape, senha, email, almoxarifado, tipo)
+    VALUES (5, 'johngreen', '123','johngreen@email.com', 5, 2);
+
+INSERT INTO public.almoxarife(
+            idalmoxarife, siape, senha, email, almoxarifado, tipo)
+    VALUES (6, 'hankgreen', '123','hankgreen@email.com', 6, 2);
+
+
+INSERT INTO public.almoxarife(
+            idalmoxarife, siape, senha, email, almoxarifado, tipo)
+    VALUES (7, 'mariasilva', '123','mariasilva@email.com', 7, 2);
+
+
+INSERT INTO public.almoxarife(
+            idalmoxarife, siape, senha, email, almoxarifado, tipo)
+    VALUES (8, 'cristianotolfo', '123','cristianotolfo@email.com', 8, 2);
+
+
+INSERT INTO public.almoxarife(
+            idalmoxarife, siape, senha, email, almoxarifado, tipo)
+    VALUES (9, 'cristinarocha', '123','cristinarocha@email.com', 9, 2);
+
+
+INSERT INTO public.almoxarife(
+            idalmoxarife, siape, senha, email, almoxarifado, tipo)
+    VALUES (10, 'joannegaga', '123','joannegaga@email.com', 10, 2);
+
+INSERT INTO public.almoxarife(
+            idalmoxarife, siape, senha, email, almoxarifado, tipo)
+    VALUES (11, 'hyunakim', '123','hyunakim@email.com', 11, 2);
+
+INSERT INTO public.categoria(
+            idcategoria, nomecategoria)
+    VALUES (1, 'Alimento');
+
+INSERT INTO public.categoria(
+            idcategoria, nomecategoria)
+    VALUES (2, 'Limpeza');
+
+INSERT INTO public.produto(
+            idproduto, descricao, descricaocomplementar, categoria)
+    VALUES (1, 'Café', 'Tradicional', 1);
+
+
+INSERT INTO public.produto(
+            idproduto, descricao, descricaocomplementar, categoria)
+    VALUES (2, 'Café', 'Extra forte', 1);
+
+INSERT INTO public.produto(
+            idproduto, descricao, descricaocomplementar, categoria)
+    VALUES (3, 'Café', 'Descafeinado', 1);
+
+
+INSERT INTO public.produto(
+            idproduto, descricao, descricaocomplementar, categoria)
+    VALUES (4, 'Café', 'Instantâneo tradicional', 1);
+
+INSERT INTO public.produto(
+            idproduto, descricao, descricaocomplementar, categoria)
+    VALUES (5, 'Café', 'Instantâneo extra forte', 1);
+
+INSERT INTO public.produto(
+            idproduto, descricao, descricaocomplementar, categoria)
+    VALUES (6, 'Vassoura', 'Multiuso', 2);
+
+INSERT INTO public.produto(
+            idproduto, descricao, descricaocomplementar, categoria)
+    VALUES (7, 'Papel Higiênico', 'Folha Simples', 2);
+
+INSERT INTO public.produto(
+            idproduto, descricao, descricaocomplementar, categoria)
+    VALUES (8, 'Papel Higiênico', 'Folha Dupla', 2);
+
+INSERT INTO public.produto(
+            idproduto, descricao, descricaocomplementar, categoria)
+    VALUES (9, 'Papel Toalha', 'Macio', 2);
+
+
+INSERT INTO public.produto(
+            idproduto, descricao, descricaocomplementar, categoria)
+    VALUES (10, 'Álcool Gel', 'Com Hidratante', 2);
+
+INSERT INTO public.item(
+            estoque, produto, quantidade)
+    VALUES (1, 1, 100);
+
+INSERT INTO public.item(
+            estoque, produto, quantidade)
+    VALUES (2, 1, 50);
+
+INSERT INTO public.item(
+            estoque, produto, quantidade)
+    VALUES (3, 1, 20);
+
+INSERT INTO public.item(
+            estoque, produto, quantidade)
+    VALUES (4, 1, 20);
+
+INSERT INTO public.item(
+            estoque, produto, quantidade)
+    VALUES (5, 1, 20);
+
+
+INSERT INTO public.item(
+            estoque, produto, quantidade)
+    VALUES (6, 1, 10);
+
+INSERT INTO public.item(
+            estoque, produto, quantidade)
+    VALUES (7, 1, 0);
+
+
+INSERT INTO public.item(
+            estoque, produto, quantidade)
+    VALUES (8, 1, 5);
+
+INSERT INTO public.item(
+            estoque, produto, quantidade)
+    VALUES (9, 1, 5);
+
+INSERT INTO public.item(
+            estoque, produto, quantidade)
+    VALUES (10, 1, 15);
+
+INSERT INTO public.item(
+            estoque, produto, quantidade)
+    VALUES (11, 1, 25);
+
+INSERT INTO public.item(
+            estoque, produto, quantidade)
+    VALUES (1, 2, 100);
+
+INSERT INTO public.item(
+            estoque, produto, quantidade)
+    VALUES (2, 2, 50);
+
+INSERT INTO public.item(
+            estoque, produto, quantidade)
+    VALUES (3, 2, 20);
+
+INSERT INTO public.item(
+            estoque, produto, quantidade)
+    VALUES (4, 2, 20);
+
+INSERT INTO public.item(
+            estoque, produto, quantidade)
+    VALUES (5, 2, 20);
+
+
+INSERT INTO public.item(
+            estoque, produto, quantidade)
+    VALUES (6, 2, 10);
+
+INSERT INTO public.item(
+            estoque, produto, quantidade)
+    VALUES (7, 2, 0);
+
+
+INSERT INTO public.item(
+            estoque, produto, quantidade)
+    VALUES (8, 2, 5);
+
+INSERT INTO public.item(
+            estoque, produto, quantidade)
+    VALUES (9, 2, 5);
+
+INSERT INTO public.item(
+            estoque, produto, quantidade)
+    VALUES (10, 2, 15);
+
+INSERT INTO public.item(
+            estoque, produto, quantidade)
+    VALUES (11, 2, 25);
+

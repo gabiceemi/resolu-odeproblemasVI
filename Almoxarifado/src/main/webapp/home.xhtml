@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:menubar>
+                <p:menuitem icon="ui-icon-home" action="#{menuBean.home()}"/>
+                <p:menuitem value="Solicitar Produtos" action="#{menuBean.solicitar()}"/>
+                <p:menuitem value="Analisar Solicitações" action="#{menuBean.analisar()}"/>
+                <p:menuitem value="Status de Pedido" action="#{menuBean.acompanhar()}"/>
+                <p:menuitem value="Consulta de Estoque" action="#{menuBean.consultar()}"/>
+                <p:menuitem value="Requisições Mensais" action="#{menuBean.requisicao()}"/> 
+        <f:facet name="options">
+                    <p:commandButton type="button" value="Seja bem vindo #{autenticacaoBean.siape}" icon="ui-icon-star" />
+                </f:facet>
+            </p:menubar>
+        </h:form>
+            <p:graphicImage url="Imagem/almox.png"/>
+    </h:body>
+</html>
+

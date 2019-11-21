@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Solicitação</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:menubar>
+                <p:menuitem icon="ui-icon-home" action="#{menuBean.home()}"/>
+                <p:menuitem value="Solicitar Produtos" action="#{menuBean.solicitar()}"/>
+                <p:menuitem value="Analisar Solicitações" action="#{menuBean.analisar()}"/>
+                <p:menuitem value="Status de Pedido" action="#{menuBean.acompanhar()}"/>
+                <p:menuitem value="Consulta de Estoque" action="#{menuBean.consultar()}"/>
+                <p:menuitem value="Requisições Mensais" action="#{menuBean.requisicao()}"/>
+                <f:facet name="options">
+                    <p:commandButton type="button" value="Seja bem vindo #{autenticacaoBean.siape}" icon="ui-icon-star" />
+                </f:facet>
+            </p:menubar>
+            <br/>
+        </h:form>
+        <h:form id="for" >
+            <p:panel style="width:320px; margin-left:auto; margin-right:auto;">
+                <h:outputText value="Buscar: "/>
+                <p:inputText value="#{almoxarifadoBean.buscaAll}" />
+                <p:commandButton icon="ui-icon-search" action="#{almoxarifadoBean.pesquisar()}" update="for" /></p:panel>
+            <br/>
+            <p:dataTable id="lista" var="produto" value="#{almoxarifadoBean.itens}" emptyMessage="Nenhum produto encontrado.">
+                <f:facet name="header">
+                    Resultado da Busca
+                </f:facet>
+                    <p:column headerText="Código">
+                            <h:outputText value="#{produto.produto.codigo}" />
+                        </p:column>
+                 
+                    <p:column headerText="Descrição">
+                            <h:outputText value="#{produto.produto.descricao}" />
+                        </p:column>
+                <p:column headerText="Descrição Complementar">
+                            <h:outputText value="#{produto.produto.descricaoComplementar}" />
+                        </p:column>
+                 
+                    <p:column headerText="Campus">
+                            <h:outputText value="#{produto.almoxarifado.campus}" />
+                        </p:column>
+                 <p:column headerText="Quantidade">
+                            <h:outputText value="#{produto.quantidade}" />
+                        </p:column>
+            </p:dataTable>
+        </h:form>
+        <br/>
+
+        <h:form id="soli">
+            <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+            <p:messages id="messages" />
+            <p:panel style="width:1200px; margin-left:auto; margin-right:auto;">
+                <f:facet name="header">
+                    Dados do Produto Solicitado
+                </f:facet>
+                <h:outputText value="Codigo do Produto: "/>
+                <p:inputText value="#{solicitacaoBean.codigo}" /> 
+
+                <h:outputText value=" Campus: "/>
+                <p:inputText value="#{solicitacaoBean.campus}" />
+
+                <h:outputText value=" Quantidade: "/>
+                <p:inputText value="#{solicitacaoBean.quantidade}" />
+
+                <p:commandButton value="Solicitar" onclick="PF('confirmacao').show();"/></p:panel>
+            <p:dialog header="Enviar solicitação" widgetVar="confirmacao" minHeight="40">
+                <p:commandButton value="Sim" update="growl"
+                                 actionListener="#{solicitacaoBean.adicionar}" 
+                                 oncomplete="handleLoginRequest(xhr, status, args)"/> 
+                <p:button value="Não" onclick="PF('confirmacao').hide(); return false;"/>
+            </p:dialog>
+        </h:form>
+ 
+<script type="text/javascript">
+    function handleLoginRequest(xhr, status, args) {
+        if(!args.loggedIn) {
+            PF('confirmacao').jq.effect("shake", {times:5}, 100);
+        }
+        else {
+            PF('confirmacao').hide();
+            $('#loginLink').fadeOut();
+        }
+    }
+</script>
+    </h:body>
+</html>

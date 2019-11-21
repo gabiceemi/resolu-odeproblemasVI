@@ -1,0 +1,122 @@
+CREATE TABLE public.status
+(
+  idstatus integer NOT NULL,
+  situacao character varying NOT NULL,
+  CONSTRAINT status_pkey PRIMARY KEY (idstatus)
+);
+CREATE TABLE public.tipo
+(
+  idtipo integer NOT NULL,
+  tipo character varying NOT NULL,
+  CONSTRAINT tipo_pkey PRIMARY KEY (idtipo)
+);
+CREATE TABLE public.categoria
+(
+  idcategoria integer NOT NULL,
+  nomecategoria character varying NOT NULL,
+  CONSTRAINT categoria_pkey PRIMARY KEY (idcategoria)
+);
+CREATE TABLE public.estoque
+(
+  idestoque integer NOT NULL,
+  CONSTRAINT estoque_pkey PRIMARY KEY (idestoque)
+);
+CREATE TABLE public.almoxarifado
+(
+  idalmoxarifado integer NOT NULL,
+  campus character varying NOT NULL,
+  tipo integer NOT NULL,
+  estoque integer NOT NULL,
+  CONSTRAINT almoxarifado_pkey PRIMARY KEY (idalmoxarifado),
+  CONSTRAINT fk_almoxarifado_estoque FOREIGN KEY (estoque)
+      REFERENCES public.estoque (idestoque) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fk_almoxarifado_tipo FOREIGN KEY (tipo)
+      REFERENCES public.tipo (idtipo) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+CREATE TABLE public.almoxarife
+(
+  idalmoxarife integer NOT NULL,
+  siape character varying NOT NULL,
+  senha character varying NOT NULL,
+  email character varying NOT NULL,
+  almoxarifado integer NOT NULL,
+  tipo integer NOT NULL,
+  CONSTRAINT almoxarife_pkey PRIMARY KEY (idalmoxarife),
+  CONSTRAINT fk_almoxarife_almoxarifado FOREIGN KEY (almoxarifado)
+      REFERENCES public.almoxarifado (idalmoxarifado) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fk_almoxarife_tipo FOREIGN KEY (tipo)
+      REFERENCES public.tipo (idtipo) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+
+CREATE TABLE public.produto
+(
+  idproduto integer NOT NULL,
+  descricao character varying NOT NULL,
+  descricaocomplementar character varying NOT NULL,
+  categoria integer NOT NULL,
+  CONSTRAINT produto_pkey PRIMARY KEY (idproduto),
+  CONSTRAINT fk_produto_categoria FOREIGN KEY (categoria)
+      REFERENCES public.categoria (idcategoria) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+
+CREATE TABLE public.item
+(
+  estoque integer NOT NULL,
+  produto integer NOT NULL,
+  quantidade integer NOT NULL,
+  CONSTRAINT item_pkey PRIMARY KEY (estoque, produto),
+  CONSTRAINT fk_item_estoque FOREIGN KEY (estoque)
+      REFERENCES public.estoque (idestoque) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fk_item_produto FOREIGN KEY (produto)
+      REFERENCES public.produto (idproduto) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+
+CREATE TABLE public.requisicao
+(
+  idrequisicao integer NOT NULL,
+  qtsolicitada integer NOT NULL,
+  produto integer NOT NULL,
+  almoxarifado integer NOT NULL,
+  status integer NOT NULL,
+  CONSTRAINT requisicao_pkey PRIMARY KEY (idrequisicao),
+  CONSTRAINT fk_requisicao_almoxarifado FOREIGN KEY (almoxarifado)
+      REFERENCES public.almoxarifado (idalmoxarifado) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fk_requisicao_produto FOREIGN KEY (produto)
+      REFERENCES public.produto (idproduto) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fk_requisicao_status FOREIGN KEY (status)
+      REFERENCES public.status (idstatus) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+CREATE TABLE public.solicitacao
+(
+idsolicitacao integer NOT NULL DEFAULT nextval('solicitacao_idsolicitacao_seq'::regclass),
+  quantidade integer NOT NULL,
+  data character varying NOT NULL,
+  produto integer NOT NULL,
+  almoxarifado integer NOT NULL,
+  almoxarife integer NOT NULL,
+  status integer NOT NULL,
+  CONSTRAINT solicitacao_pkey PRIMARY KEY (idsolicitacao),
+  CONSTRAINT fk_solicitacao_almoxarifado FOREIGN KEY (almoxarifado)
+      REFERENCES public.almoxarifado (idalmoxarifado) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fk_solicitacao_produto FOREIGN KEY
+CONSTRAINT fk_solicitacao_almoxarife FOREIGN KEY (almoxarife)
+      REFERENCES public.almoxarife (idalmoxarife) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION, (produto)
+      REFERENCES public.produto (idproduto) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fk_solicitacao_status FOREIGN KEY (status)
+      REFERENCES public.status (idstatus) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+
